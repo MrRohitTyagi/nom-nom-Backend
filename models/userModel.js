@@ -14,7 +14,7 @@ const userSchema = new Schema({
   address: {
     display_name: { type: String },
     lat: { type: Number },
-    log: { type: Number },
+    lon: { type: Number },
   },
   isDarkTheme: {
     type: Boolean,
