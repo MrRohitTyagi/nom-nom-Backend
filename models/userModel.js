@@ -12,10 +12,9 @@ const userSchema = new Schema({
   picture: { type: String },
   password: { type: String, required: [true, "Password is required"] },
   address: {
-    street: { type: String },
-    city: { type: String },
-    state: { type: String },
-    country: { type: String },
+    display_name: { type: String },
+    lat: { type: Number },
+    log: { type: Number },
   },
   isDarkTheme: {
     type: Boolean,
