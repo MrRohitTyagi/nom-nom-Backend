@@ -1,13 +1,13 @@
 import express from "express";
 import { getUserByToken, updateUser } from "../handlers/userHandler.js";
 import { VerifyToken } from "../utils/jsonwentoken.js";
-import { login, signUp } from "../handlers/authHandlers.js";
+import { login, signUp, regester_restraunt } from "../handlers/authHandlers.js";
 const userRouter = express.Router();
 
 //post User
 userRouter.post("/signup", signUp);
 userRouter.post("/login", login);
-userRouter.post("/regester-restraunt", login);
+userRouter.post("/regester-restraunt", regester_restraunt);
 
 userRouter.get("/get", tokenVerifyMiddleware, getUserByToken);
 userRouter.put("/update", tokenVerifyMiddleware, updateUser);
