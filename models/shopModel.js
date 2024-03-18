@@ -13,11 +13,11 @@ const shopSchema = new Schema({
     lat: { type: Number },
     lon: { type: Number },
   },
-  statusRN: {
-    type: String,
+  regestrationStep: {
+    type: Number,
     required: true,
-    default: "step-1",
-    enum: ["step-1", "step-2", "step-3"],
+    default: 1,
+    enum: [1, 2, 3, 4],
   },
   isOpen: Boolean,
   timing: { opensAt: String, closesAt: String },
