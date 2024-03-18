@@ -1,5 +1,6 @@
 import userModel from "../models/userModel.js";
 import shopModel from "../models/shopModel.js";
+import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/jsonwentoken.js";
 
 export const signUp = async (req, res) => {
@@ -55,7 +56,7 @@ export const regester_restraunt = async (req, res) => {
     ).toObject();
 
     const user = (
-      await userModel.create({ shop_id: shop._id.toString(), ...userpayload })
+      await userModel.create({ shop: shop._id.toString(), ...userpayload })
     ).toObject();
     const token = generateToken(user);
 

@@ -9,7 +9,7 @@ const userSchema = new Schema({
     unique: [true, "Email already exists"],
     trim: true,
   },
-  shop_id: { type: Schema.Types.ObjectId, ref: "restraunt-model" },
+  shop: { type: Schema.Types.ObjectId, ref: "restraunt-model" },
   desc: { trim: true, type: String },
   picture: { trim: true, type: String },
   password: {

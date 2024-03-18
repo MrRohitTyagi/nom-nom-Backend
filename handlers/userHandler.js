@@ -1,10 +1,12 @@
 import userModel from "../models/userModel.js";
 
-
 export const getUserByToken = async (req, res) => {
   try {
     const user_id = req.headers["user_id"];
-    const user = await userModel.findById(user_id).select("-password -__v");
+    let user = await userModel.findById(user_id).select("-password -__v");
+    if (user.shop) {
+      user = await user.populate("shop");
+    }
     return res.send({ user });
   } catch (error) {
     console.log("error", error);
