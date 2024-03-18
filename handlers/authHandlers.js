@@ -1,5 +1,6 @@
-import userModel from "../models/userModel";
-import { generateToken } from "../utils/jsonwentoken";
+import userModel from "../models/userModel.js";
+import shopModel from "../models/shopModel.js";
+import { generateToken } from "../utils/jsonwentoken.js";
 
 export const signUp = async (req, res) => {
   try {
@@ -46,23 +47,19 @@ export const login = async (req, res) => {
 };
 
 export const regester_restraunt = async (req, res) => {
-  const payload = req.body;
-  //   return res.send(payload);
+  const { shop_name, shop_desc, ...userpayload } = req.body;
+  //   return res.send(req.body);
   try {
-    let user = await userModel.create(payload);
-    if (!user) return res.status(400).send({ msg: "User does not exists" });
-    user = user.toObject();
-    //if user is found by email
-    const isPasswordSame = await bcrypt.compare(password, user.password);
-    if (!isPasswordSame) {
-      return res.status(400).send({
-        msg: "Password does not match ,please enter the correct password",
-      });
-    }
+    const shop = (
+      await shopModel.create({ name: shop_name, desc: shop_desc })
+    ).toObject();
 
+    const user = (
+      await userModel.create({ shop_id: shop._id.toString(), ...userpayload })
+    ).toObject();
     const token = generateToken(user);
 
-    res.send({ success: true, user, token });
+    res.send({ success: true, user, shop, token });
   } catch (error) {
     res
       .status(500)

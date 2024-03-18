@@ -2,15 +2,21 @@ import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcryptjs";
 
 const userSchema = new Schema({
-  name: { type: String, required: [true, "Name is required"] },
+  name: { trim: true, type: String, required: [true, "Name is required"] },
   email: {
     type: String,
     required: [true, "Email is required"],
-    // unique: [true, "Email already exists"],
+    unique: [true, "Email already exists"],
+    trim: true,
   },
-  desc: { type: String },
-  picture: { type: String },
-  password: { type: String, required: [true, "Password is required"] },
+  shop_id: { type: Schema.Types.ObjectId, ref: "restraunt-model" },
+  desc: { trim: true, type: String },
+  picture: { trim: true, type: String },
+  password: {
+    trim: true,
+    type: String,
+    required: [true, "Password is required"],
+  },
   address: {
     city: { type: String },
     state: { type: String },
