@@ -4,6 +4,8 @@ const shopSchema = new Schema({
   name: { trim: true, type: String, required: [true, "Name is required"] },
   desc: { trim: true, type: String, default: "" },
   picture: { type: [String], default: [] },
+  phone: String,
+  tel: String,
   address: {
     city: { type: String },
     state: { type: String },
