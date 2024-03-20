@@ -23,7 +23,7 @@ const shopSchema = new Schema({
   },
   isOpen: Boolean,
   timing: { opensAt: String, closesAt: String },
-  menu: Schema.Types.Mixed,
+  menu: { type: [], default: [] },
   averageCTC: String,
   offers: [{ code: String, desc: String, discount: Number }],
   // {
