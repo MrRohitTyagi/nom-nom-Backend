@@ -23,7 +23,9 @@ export const signUp = async (req, res) => {
 export const login = async (req, res) => {
   const { email = "", password = "" } = req.body;
   try {
-    let user = await userModel.findOne({ email: email.trim() });
+    let user = await userModel
+      .findOne({ email: email.trim() })
+      .populate("shop");
     if (!user) return res.status(400).send({ msg: "User does not exists" });
     user = user.toObject();
     //if user is found by email

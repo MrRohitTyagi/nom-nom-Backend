@@ -19,7 +19,7 @@ const shopSchema = new Schema({
     type: Number,
     required: true,
     default: 1,
-    enum: [1, 2, 3, 4],
+    enum: [0, 1, 2],
   },
   isOpen: Boolean,
   timing: { opensAt: String, closesAt: String },

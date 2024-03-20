@@ -1,9 +1,12 @@
 import express from "express";
 import cors from "cors";
-import { connectToDB } from "./db/db.js";
-import userRouter from "./routes/userRoutes.js";
-
 import dotenv from "dotenv";
+
+import { connectToDB } from "./db/db.js";
+
+import userRouter from "./routes/userRoutes.js";
+import shopRouter from "./routes/shopRoutes.js";
+
 dotenv.config();
 const PORT = process.env.PORT;
 const MONGO_STRING = process.env.MONGO_STRING || "e";
@@ -17,6 +20,7 @@ app.options("*", cors("*"));
 app.use(cors("*"));
 
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/restraunt", shopRouter);
 
 app.get("/", (req, res) => {
   res.send({ syccess: true });
